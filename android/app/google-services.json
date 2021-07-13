@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "975423121355",
+    "project_id": "designer-diary-c86f7",
+    "storage_bucket": "designer-diary-c86f7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:975423121355:android:8f1811c38e2012d5c3784e",
+        "android_client_info": {
+          "package_name": "br.com.oliveira.designer_diary"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "975423121355-1f6qemoka4603rgdvbqg652fo39m7eqq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGMdrOu64kAkRwbmA1XqKFl5dNIGrNCJA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "975423121355-1f6qemoka4603rgdvbqg652fo39m7eqq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
