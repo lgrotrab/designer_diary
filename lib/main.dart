@@ -2,7 +2,6 @@ import 'package:designer_diary/firebase/authentication.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  signIn();
   runApp(MyApp());
 }
 
@@ -30,7 +29,10 @@ class MyApp extends StatelessWidget {
 }
 
 class homePage extends StatelessWidget {
-  const homePage({Key? key}) : super(key: key);
+  homePage({Key? key}) : super(key: key);
+
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +40,32 @@ class homePage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Teste SignIn'),
       ),
-      body: Text('Olá mundo'),
+      body: Column(
+        children: [
+          TextField(
+            controller: emailController,
+          ),
+          TextField(
+            controller: passwordController,
+            obscureText: true,
+          ),
+          ElevatedButton(
+            onPressed: () {
+              signIn(emailController.text, passwordController.text);
+            },
+            child: Text('Login'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              register(
+                emailController.text,
+                passwordController.text,
+              );
+            },
+            child: Text('Cadastrar'),
+          )
+        ],
+      ),
     );
   }
 }
