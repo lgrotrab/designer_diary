@@ -1,0 +1,1 @@
+esta pasta terá arquivos relacionados ao DAO de cada conexão.
