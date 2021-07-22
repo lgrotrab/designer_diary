@@ -1,3 +1,5 @@
+import 'package:designer_diary/firebase/Post_Firebase.dart';
+import 'package:designer_diary/model/post.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
@@ -8,14 +10,52 @@ class FeedScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView(
-        children: <Widget>[
-          FeedPost(),
-          FeedPost(),
-          FeedPost(),
-          FeedPost(),
-          FeedPost(),
-        ],
+      body: FutureBuilder<List<post>>(
+        future: getPost(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            final List<post>? posts = snapshot.data;
+            return ListView.builder(
+                itemCount: posts!.length,
+                itemBuilder: (context, index) {
+                  final post Teste = posts[index];
+                  return Container(
+                    padding: EdgeInsets.all(16.0),
+                    child: Column(
+                      children: <Widget>[
+                        Text(
+                          Teste.title,
+                          style: TextStyle(fontSize: 30, color: Colors.black),
+                          textAlign: TextAlign.start,
+                        ),
+                        Image(
+                          image: NetworkImage(Teste.mainImage),
+                        ),
+                        Row(
+                          children: [
+                            CircleAvatar(
+                              backgroundImage:
+                                  NetworkImage(Teste.profilePicture),
+                            ),
+                            Text(
+                              Teste.username,
+                              style:
+                                  TextStyle(fontSize: 18, color: Colors.black),
+                              textAlign: TextAlign.right,
+                            ),
+                          ],
+                        ),
+                        Text(
+                          Teste.description,
+                          textAlign: TextAlign.justify,
+                        ),
+                      ],
+                    ),
+                  );
+                });
+          }
+          return Text('Teste');
+        },
       ),
     );
   }

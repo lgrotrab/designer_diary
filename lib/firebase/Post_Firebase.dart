@@ -4,20 +4,20 @@ import 'package:firebase_core/firebase_core.dart';
 
 FirebaseApp design = Firebase.app('designer-diary');
 
-void getPost() async {
+Future<List<post>> getPost() async {
   final List<post> postList = [];
   await Firebase.initializeApp();
-  FirebaseFirestore firestore = FirebaseFirestore.instance;
-  await FirebaseFirestore.instance
-      .collection('posts')
-      .get()
-      .then((snapshot) => snapshot.docs.forEach((i) {
-            print(i.data()['title']);
-            post newPost = post(
-                title: i.data()['title'],
-                description: i.data()['description'],
-                mainImage: i.data()['main_image'],
-                profilePicture: i.data()['profile_picture'],
-                username: i.data()['username']);
-          }));
+  await FirebaseFirestore.instance.collection('posts').get().then(
+        (snapshot) => snapshot.docs.forEach((i) {
+          print(i.data()['title']);
+          post newPost = post(
+              title: i.data()['title'],
+              description: i.data()['description'],
+              mainImage: i.data()['main_image'],
+              profilePicture: i.data()['profile_picture'],
+              username: i.data()['username']);
+          postList.add(newPost);
+        }),
+      );
+  return postList;
 }
