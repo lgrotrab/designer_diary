@@ -1,6 +1,5 @@
 import 'dart:ui';
 
-import 'package:designer_diary/main.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatelessWidget {
