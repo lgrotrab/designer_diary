@@ -43,3 +43,8 @@ Future<List<Post>> getMorePosts() async {
   });
   return postList;
 }
+
+void emptyPosts() {
+  postList.clear();
+  print("Lista limpa");
+}

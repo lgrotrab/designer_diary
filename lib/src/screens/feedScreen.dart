@@ -1,5 +1,6 @@
 import 'package:designer_diary/src/firebase/post_Firebase.dart';
 import 'package:designer_diary/src/model/post.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
@@ -15,6 +16,7 @@ class _FeedScreenState extends State<FeedScreen> {
   Future<List<Post>> initialValue = getPosts();
   late ScrollController con;
   bool getPostIsComplete = false;
+  final auth = FirebaseAuth.instance;
 
   @override
   void initState() {
@@ -38,6 +40,14 @@ class _FeedScreenState extends State<FeedScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          auth.signOut();
+          emptyPosts();
+          Navigator.pop(context);
+        },
+        child: Icon(Icons.logout),
+      ),
       appBar: AppBar(
         title: Text('Feed'),
       ),
@@ -97,7 +107,9 @@ class _FeedScreenState extends State<FeedScreen> {
                   );
                 });
           }
-          return Text('Teste');
+          return Center(
+            child: CircularProgressIndicator(),
+          );
         },
       ),
     );

@@ -1,4 +1,4 @@
-import 'package:designer_diary/src/screens/feedScreen.dart';
+import 'package:designer_diary/src/screens/loginScreen.dart';
 import 'package:flutter/material.dart';
 
 class App extends StatelessWidget {
@@ -11,7 +11,7 @@ class App extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: FeedScreen(),
+      home: LoginScreen(),
     );
   }
 }
