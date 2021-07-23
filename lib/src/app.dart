@@ -1,4 +1,4 @@
-import 'package:designer_diary/src/screens/FeedScreen.dart';
+import 'package:designer_diary/src/screens/feedScreen.dart';
 import 'package:flutter/material.dart';
 
 class App extends StatelessWidget {

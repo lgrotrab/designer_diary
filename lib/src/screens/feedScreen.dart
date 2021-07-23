@@ -1,11 +1,39 @@
-import 'package:designer_diary/src/firebase/Post_Firebase.dart';
+import 'package:designer_diary/src/firebase/post_Firebase.dart';
 import 'package:designer_diary/src/model/post.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
 
-class FeedScreen extends StatelessWidget {
+class FeedScreen extends StatefulWidget {
   const FeedScreen({Key? key}) : super(key: key);
+
+  @override
+  _FeedScreenState createState() => _FeedScreenState();
+}
+
+class _FeedScreenState extends State<FeedScreen> {
+  Future<List<Post>> initialValue = getPosts();
+  late ScrollController con;
+  bool getPostIsComplete = false;
+
+  @override
+  void initState() {
+    super.initState();
+    con = ScrollController();
+    con.addListener(() {
+      if (con.position.pixels == con.position.maxScrollExtent) {
+        if (getPostIsComplete == false)
+          setState(() {
+            getMorePosts().whenComplete(() => getPostIsComplete = true);
+            Future.delayed(Duration(seconds: 1));
+          });
+        if (getPostIsComplete == true) {
+          Future.delayed(Duration(seconds: 3));
+        }
+        getPostIsComplete = false;
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -14,20 +42,23 @@ class FeedScreen extends StatelessWidget {
         title: Text('Feed'),
       ),
       body: FutureBuilder<List<Post>>(
-        future: getPosts(),
+        future: initialValue,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             final List<Post>? posts = snapshot.data;
             return ListView.builder(
+                controller: con,
                 itemCount: posts!.length,
                 itemBuilder: (context, index) {
                   final Post teste = posts[index];
                   return Container(
                     padding: EdgeInsets.all(16.0),
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Padding(
-                          padding: const EdgeInsets.all(16.0),
+                          padding:
+                              const EdgeInsets.fromLTRB(0.0, 8.0, 0.0, 8.0),
                           child: Text(
                             teste.title,
                             style: TextStyle(fontSize: 30, color: Colors.black),

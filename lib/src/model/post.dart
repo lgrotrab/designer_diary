@@ -4,7 +4,7 @@ class Post {
   final String mainImage;
   final String profilePicture;
   final String username;
-  Post(
+  Post(Post post,
       {required this.title,
       required this.description,
       this.mainImage =
@@ -12,6 +12,14 @@ class Post {
       this.profilePicture =
           'https://isaojose.com.br/wp-content/uploads/2020/12/blank-profile-picture-mystery-man-avatar-973460.jpg',
       required this.username});
+
+  Post.fromMap(Map<dynamic, dynamic> value)
+      : title = value['title'],
+        username = value['username'],
+        mainImage = value['main_image'],
+        profilePicture = value['profile_picture'],
+        description = value['description'];
+
   String getTitle() {
     return this.title;
   }
