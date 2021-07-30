@@ -1,4 +1,4 @@
-import 'package:designer_diary/src/firebase/post_Firebase.dart';
+import 'package:designer_diary/src/firebase/postFirebase.dart';
 import 'package:designer_diary/src/model/post.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
